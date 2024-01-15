@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Link } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
 import { useEffect } from 'react'
-import logo from '../images/logo.svg'
+import logo from '../images/Logo.svg'
 import AOS from 'aos'
 const Layout = ({ pageTitle, children }) => {
    useEffect(() => {
