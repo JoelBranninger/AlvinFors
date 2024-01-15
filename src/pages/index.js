@@ -13,6 +13,12 @@ const IndexPage = ({ data }) => {
    const imageToFirstHeadning =
       data?.allContentfulStartPage?.nodes[0]?.imageToFirstHeadning?.file?.url ||
       ''
+   const secondSectionDescription =
+      data?.allContentfulStartPage?.nodes[0]?.secondSectionDescription || ''
+   const secondSectionButtonText =
+      data?.allContentfulStartPage?.nodes[0]?.secondSectionButtonText || ''
+   const secondSectionTitle =
+      data?.allContentfulStartPage?.nodes[0]?.secondSectionTitle || ''
    useEffect(() => {
       AOS.init({
          duration: 1000, // Här kan du sätta dina önskade AOS-initieringsalternativ
@@ -47,13 +53,10 @@ const IndexPage = ({ data }) => {
             data-aos="fade-up"
          >
             <div className="w-[600px] p-4 text-themeWhite">
-               <p className="text-themeOrange">Eiusmod</p>
-               <h2 className="text-4xl font-bold">Types of gigs</h2>
-               <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Morbi blandit cursus risus at ultrices.
-               </p>
+               <h2 className="mb-2 w-fit border-b-4 border-themeOrange pb-1 text-4xl font-bold">
+                  {secondSectionTitle}
+               </h2>
+               <p>{secondSectionDescription}</p>
             </div>
             <section className="grid w-full grid-cols-3 gap-4 p-4 text-themeWhite">
                {data.allContentfulAlbumCategories.nodes.map((data) => (
@@ -79,7 +82,7 @@ const IndexPage = ({ data }) => {
             </section>
             <div className="flex w-full justify-center">
                <button className="border-2 border-themeOrange px-8 py-4 text-xl text-themeOrange transition-all hover:bg-themeOrange hover:text-themeWhite">
-                  Kontakta
+                  {secondSectionButtonText}
                </button>
             </div>
          </div>
@@ -99,6 +102,9 @@ export const pageQuery = graphql`
                   url
                }
             }
+            secondSectionButtonText
+            secondSectionDescription
+            secondSectionTitle
          }
       }
       allContentfulAlbumCategories {
