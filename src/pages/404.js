@@ -1,48 +1,75 @@
-import * as React from "react"
-import { Link } from "gatsby"
+// pages/404.js
+import React, { useState } from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/layout'
+import Search from '../components/search'
+import { Link } from 'gatsby'
+const NotFoundPage = ({ data }) => {
+   const allPages = data.allSitePage.edges
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
+   const [searchResults, setSearchResults] = useState([])
+
+   const handleSearch = (query) => {
+      if (query.length > 0) {
+         const results = allPages.filter(
+            (page) =>
+               page.node.path.toLowerCase().includes(query.toLowerCase()) ||
+               page.node.path.toLowerCase().includes(query.toLowerCase())
+         )
+         setSearchResults(results)
+      }
+   }
+
+   return (
+      <Layout pageTitle="Not Found">
+         <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center  overflow-hidden">
+            <section
+               className="flex w-full flex-col content-center items-center gap-10"
+               data-aos="fade-up"
+            >
+               <div className="flex justify-center bg-themeDark text-3xl text-themeWhite">
+                  Something went wrong!
+               </div>
+               <div className=" flex w-fit flex-col content-center gap-5 text-themeWhite">
+                  <Search onSubmit={handleSearch} />
+                  {searchResults.map((result) => (
+                     <div cla key={result.node.path}>
+                        <Link to={result.node.path}>
+                           <h3 className="text-center">
+                              {result.node.path
+                                 .split('/')
+                                 .filter(Boolean)
+                                 .slice(-1)[0]
+                                 .charAt(0)
+                                 .toUpperCase() +
+                                 result.node.path
+                                    .split('/')
+                                    .filter(Boolean)
+                                    .slice(-1)[0]
+                                    .slice(1)}
+                           </h3>
+                        </Link>
+                     </div>
+                  ))}
+               </div>
+            </section>
+         </div>
+      </Layout>
+   )
 }
 
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
-const NotFoundPage = () => {
-  return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
-  )
-}
+export const query = graphql`
+   query {
+      allSitePage {
+         edges {
+            node {
+               pageContext
+               path
+            }
+         }
+      }
+   }
+`
 
 export default NotFoundPage
 
