@@ -34,7 +34,6 @@ const NotFoundPage = ({ data }) => {
                   <Search onSubmit={handleSearch} />
                   {searchResults.map((result) => (
                      <div cla key={result.node.path}>
-                        f
                         <Link to={result.node.path}>
                            <h3 className="text-center">
                               {result.node.path
