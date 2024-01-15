@@ -8,7 +8,7 @@ import { Link } from 'gatsby'
 const AlbumPage = ({ data }) => {
    return (
       <Layout pageTitle="Album">
-         <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center overflow-hidden">
+         <div className=" mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center overflow-hidden">
             <section className="grid grid-cols-2 gap-4">
                <div
                   className=" flex flex-wrap content-center gap-5 pl-4 text-themeWhite"

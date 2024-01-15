@@ -3,6 +3,7 @@ import * as React from 'react'
 import weddingIcon from '../images/brolopp.svg'
 import Layout from '../components/layout'
 import { Link } from 'gatsby'
+import '../styles/global.css'
 
 const FilterPage = ({ data }) => {
    console.log(data)
@@ -27,7 +28,7 @@ const FilterPage = ({ data }) => {
                </div>
                <div
                   className="flex h-[25vh] justify-center bg-themeDark pr-4 text-themeWhite"
-                  data-aos="fade-left"
+                  data-aos="fade-left "
                >
                   <img src={weddingIcon} alt="camera" />
                </div>
@@ -42,11 +43,11 @@ const FilterPage = ({ data }) => {
                {data.allContentfulImage.nodes.map((blog, index) => {
                   const rotationDegree =
                      (index % 2 === 0 ? 1 : -1) *
-                     (Math.floor(Math.random() * 10) + 1) // Växlar mellan positivt och negativt värde beroende på indexet
+                     (Math.floor(Math.random() * 5) + 1) // Växlar mellan positivt och negativt värde beroende på indexet
                   return (
-                     <li key={index} className="card sticky  top-0">
+                     <li key={index} className="card sticky top-0 mx-auto">
                         <div
-                           className="card-body relative box-content flex h-[90vh] items-center justify-center  rounded-3xl transition-all duration-500 ease-in-out"
+                           className="card-body relative mx-auto box-content flex h-[90vh] items-center justify-center  rounded-3xl transition-all duration-500 ease-in-out"
                            style={{
                               top: `${index * 1.5}em`,
                               transform: `rotate(${rotationDegree}deg)`,

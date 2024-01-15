@@ -23,7 +23,7 @@ const IndexPage = ({ data }) => {
          <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center overflow-hidden">
             <section className="grid grid-cols-2 gap-4">
                <div
-                  className=" flex flex-wrap content-center gap-5 pl-4 text-themeWhite"
+                  className="flex flex-wrap content-center gap-5 pl-4 text-themeWhite"
                   data-aos="fade-left"
                >
                   <h2 className=" text-8xl">{heading}</h2>
