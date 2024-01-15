@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby'
 import * as React from 'react'
-import weddingIcon from '../images/brölopp.svg'
+import weddingIcon from '../images/brolopp.svg'
 import Layout from '../components/layout'
 import { Link } from 'gatsby'
 
@@ -55,7 +55,7 @@ const FilterPage = ({ data }) => {
                            <Link
                               to={'/archive/' + blog.slug}
                               alt={blog.slug}
-                              className="absolute left-0 top-1"
+                              className="absolute left-0 top-16"
                            >
                               <img
                                  className="border-4 border-themeOrange shadow-lg"
