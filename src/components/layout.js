@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Link } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
 import { useEffect } from 'react'
+import logo from '..images/logo.svg'
 import AOS from 'aos'
 const Layout = ({ pageTitle, children }) => {
    useEffect(() => {
@@ -15,7 +16,7 @@ const Layout = ({ pageTitle, children }) => {
                   to="/"
                   className="flex items-center space-x-3 rtl:space-x-reverse"
                >
-                  <StaticImage alt="En bild" src="../images/logo.svg" />
+                  <img src={logo} alt="alvin fors logo" />
                </Link>
                <button
                   data-collapse-toggle="navbar-default"
