@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby'
 import * as React from 'react'
-import weddingIcon from '../images/brolopp.svg'
 import Layout from '../components/layout'
 import { Link } from 'gatsby'
 import '../styles/global.css'
@@ -10,15 +9,13 @@ const FilterPage = ({ data }) => {
    let category = data.allContentfulImage.nodes[0].albumCategory
    let capitalizedCategory =
       category.charAt(0).toUpperCase() + category.slice(1)
-
+   let icon =
+      data.allContentfulAlbumCategories.nodes[0].iconToTheCategory.file.url
    return (
       <Layout>
          <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center overflow-hidden">
-            <section className="grid grid-cols-2 gap-4">
-               <div
-                  className=" flex flex-wrap content-center gap-5 pl-4 text-themeWhite"
-                  data-aos="fade-left"
-               >
+            <section className="grid grid-cols-2 gap-4" data-aos="fade-left">
+               <div className=" flex flex-wrap content-center gap-5 pl-4 text-themeWhite">
                   <h2 className=" text-8xl">{capitalizedCategory}</h2>
                   <p className="text-xl">
                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -30,7 +27,7 @@ const FilterPage = ({ data }) => {
                   className="flex h-[25vh] justify-center bg-themeDark pr-4 text-themeWhite"
                   data-aos="fade-left "
                >
-                  <img src={weddingIcon} alt="camera" />
+                  <img src={icon} alt="camera" />
                </div>
             </section>
          </div>
@@ -84,6 +81,16 @@ export const pageQuery = graphql`
             }
             albumCategory
             imageFile {
+               file {
+                  url
+               }
+            }
+         }
+      }
+
+      allContentfulAlbumCategories(filter: { slug: { eq: $albumCategory } }) {
+         nodes {
+            iconToTheCategory {
                file {
                   url
                }

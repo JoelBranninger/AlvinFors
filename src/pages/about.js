@@ -2,9 +2,26 @@ import { graphql } from 'gatsby'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import * as React from 'react'
 import Layout from '../components/layout'
-import alvin1 from '../images/alvinAbout1.png'
-import alvin2 from '../images/alvinAbout2.png'
 const AboutPage = ({ data }) => {
+   const firstSectionTitle =
+      data?.allContentfulAboutPage?.nodes[0]?.firstSectionTitle || ''
+   const firstSectionDescription =
+      data?.allContentfulAboutPage?.nodes[0]?.firstSectionDescription?.raw || ''
+   const imageToFirstSecion =
+      data?.allContentfulAboutPage?.nodes[0]?.imageToFirstSecion?.file?.url ||
+      ''
+   const secondSectionTitle =
+      data?.allContentfulAboutPage?.nodes[0]?.secondSectionTitle || ''
+   const secondSectionDescription =
+      data?.allContentfulAboutPage?.nodes[0]?.secondSectionDescription?.raw ||
+      ''
+   const imageToSecondSection =
+      data?.allContentfulAboutPage?.nodes[0]?.imageToSecondSection?.file?.url ||
+      ''
+   const thirdSectionTitle =
+      data?.allContentfulAboutPage?.nodes[0]?.thirdSectionTitle || ''
+   const thirdSectionDescription =
+      data?.allContentfulAboutPage?.nodes[0]?.thirdSectionDescription?.raw || ''
    return (
       <Layout pageTitle="About Me">
          <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center  overflow-hidden">
@@ -14,14 +31,12 @@ const AboutPage = ({ data }) => {
                   data-aos="fade-left"
                >
                   <h2 className=" border-b-4 border-themeOrange text-6xl">
-                     About
+                     {firstSectionTitle}
                   </h2>
                   <p className="text-2xl">
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                     sed do eiusmod tempor incididunt ut labore et dolore magna
-                     aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing
-                     elit, sed do eiusmod tempor incididunt ut labore et dolore
-                     magna aliqua.
+                     {documentToReactComponents(
+                        JSON.parse(firstSectionDescription)
+                     )}
                   </p>
                </div>
                <div
@@ -34,7 +49,7 @@ const AboutPage = ({ data }) => {
                      </div>
                      <img
                         className="relative z-20 h-full w-full object-cover object-center"
-                        src={alvin1}
+                        src={imageToFirstSecion}
                         alt="Beskrivande alt-text här"
                      />
                   </div>
@@ -53,7 +68,7 @@ const AboutPage = ({ data }) => {
                      </div>
                      <img
                         className="relative z-20 h-full w-full object-cover object-center"
-                        src={alvin2}
+                        src={imageToSecondSection}
                         alt="Beskrivande alt-text här"
                      />
                   </div>
@@ -63,24 +78,13 @@ const AboutPage = ({ data }) => {
                   data-aos="fade-right"
                >
                   <h2 className=" border-b-4 border-themeOrange text-6xl">
-                     Setup
+                     {secondSectionTitle}
                   </h2>
                   <p className="text-2xl">
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                     sed do eiusmod tempor incididunt ut labore et dolore magna
-                     aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing
-                     elit, sed do eiusmod tempor incididunt ut labore et dolore
-                     magna aliqua.
+                     {documentToReactComponents(
+                        JSON.parse(secondSectionDescription)
+                     )}
                   </p>
-                  <div className="flex flex-col gap-4">
-                     <h3 className="text-4xl font-medium">Equipment:</h3>
-                     <ul className="list-[square] pl-7 text-2xl marker:text-themeOrange">
-                        <li>Soundooks 2 st</li>
-                        <li>Skit feta och dyra lampor</li>
-                        <li>Ännu flera dyra lampor</li>
-                        <li>Ett dj bord (x2 6700 pro)</li>
-                     </ul>
-                  </div>
                </div>
             </section>
          </div>
@@ -89,11 +93,11 @@ const AboutPage = ({ data }) => {
             data-aos="fade-up"
          >
             <div className="flex w-[600px] flex-col gap-4 p-4 text-themeWhite">
-               <h2 className="text-6xl font-bold">Photo album</h2>
+               <h2 className="text-6xl font-bold">{thirdSectionTitle}</h2>
                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Morbi blandit cursus risus at ultrices.
+                  {documentToReactComponents(
+                     JSON.parse(thirdSectionDescription)
+                  )}
                </p>
             </div>
             <section className="grid w-full grid-cols-3 gap-8 p-4 pl-8 text-themeWhite">
@@ -127,6 +131,32 @@ const AboutPage = ({ data }) => {
 }
 export const pageQuery = graphql`
    query {
+      allContentfulAboutPage {
+         nodes {
+            firstSectionDescription {
+               raw
+            }
+            firstSectionTitle
+            imageToFirstSecion {
+               file {
+                  url
+               }
+            }
+            imageToSecondSection {
+               file {
+                  url
+               }
+            }
+            secondSectionTitle
+            secondSectionDescription {
+               raw
+            }
+            thirdSectionTitle
+            thirdSectionDescription {
+               raw
+            }
+         }
+      }
       allContentfulAlbumCategories {
          nodes {
             categoryName

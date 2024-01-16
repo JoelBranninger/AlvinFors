@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby'
 import * as React from 'react'
-import { useEffect } from 'react'
 import Layout from '../components/layout'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import AOS from 'aos'
@@ -19,11 +18,7 @@ const IndexPage = ({ data }) => {
       data?.allContentfulStartPage?.nodes[0]?.secondSectionButtonText || ''
    const secondSectionTitle =
       data?.allContentfulStartPage?.nodes[0]?.secondSectionTitle || ''
-   useEffect(() => {
-      AOS.init({
-         duration: 1000, // Här kan du sätta dina önskade AOS-initieringsalternativ
-      })
-   }, [])
+
    return (
       <Layout pageTitle="Home">
          <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center overflow-hidden">
