@@ -1,8 +1,25 @@
+import { graphql } from 'gatsby'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import * as React from 'react'
 import Layout from '../components/layout'
-import mail from '../images/mail.svg'
-import phone from '../images/phone.svg'
-const ContactPage = () => {
+const ContactPage = ({ data }) => {
+   const title = data?.allContentfulContactPage?.nodes[0]?.title || ''
+   const description =
+      data?.allContentfulContactPage?.nodes[0]?.description?.raw || ''
+   const firstColumnTitle =
+      data?.allContentfulContactPage?.nodes[0]?.firstColumnTitle || ''
+   const firstColumnImage =
+      data?.allContentfulContactPage?.nodes[0]?.firstColumnImage?.file?.url ||
+      ''
+   const phoneNumber =
+      data?.allContentfulContactPage?.nodes[0]?.phoneNumber || ''
+   const secondColumnTitle =
+      data?.allContentfulContactPage?.nodes[0]?.secondColumnTitle || ''
+   const secondColumnImage =
+      data?.allContentfulContactPage?.nodes[0]?.secondColumnImage?.file?.url ||
+      ''
+   const emailAdress =
+      data?.allContentfulContactPage?.nodes[0]?.emailAdress || ''
    return (
       <Layout pageTitle="Contact">
          <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center overflow-hidden">
@@ -11,13 +28,9 @@ const ContactPage = () => {
                   className=" flex flex-wrap content-center gap-5 pl-4 text-themeWhite"
                   data-aos="fade-left"
                >
-                  <h2 className=" text-6xl">Get in touch!</h2>
+                  <h2 className=" text-6xl">{title}</h2>
                   <p className="text-xl">
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                     sed do eiusmod tempor incididunt ut labore et dolore magna
-                     aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing
-                     elit, sed do eiusmod tempor incididunt ut labore et dolore
-                     magna aliqua.
+                     {documentToReactComponents(JSON.parse(description))}
                   </p>
                </div>
                <div
@@ -31,20 +44,20 @@ const ContactPage = () => {
             >
                <section className="grid w-full grid-cols-2  gap-4 p-4 text-themeWhite">
                   <div className="mx-auto flex w-96  flex-col items-center gap-8 border-2 border-themeOrange bg-themeDarker p-6">
-                     <img src={phone} alt="" />
+                     <img src={firstColumnImage} alt="" />
                      <h3 className="border-b-2 border-themeOrange text-3xl">
-                        Call me!
+                        {firstColumnTitle}
                      </h3>
 
-                     <p className="text-xl">070-209 97 00</p>
+                     <p className="text-xl">{phoneNumber}</p>
                   </div>
                   <div className="mx-auto flex w-96  flex-col items-center gap-8 border-2 border-themeOrange bg-themeDarker p-6">
-                     <img src={mail} alt="" />
+                     <img src={secondColumnImage} alt="" />
                      <h3 className="border-b-2 border-themeOrange text-3xl">
-                        Mail me!
+                        {secondColumnTitle}
                      </h3>
 
-                     <p className="text-xl">dj.alvinfors@gmail.com</p>
+                     <p className="text-xl">{emailAdress}</p>
                   </div>
                </section>
             </div>
@@ -52,5 +65,31 @@ const ContactPage = () => {
       </Layout>
    )
 }
+export const pageQuery = graphql`
+   query {
+      allContentfulContactPage {
+         nodes {
+            description {
+               raw
+            }
+            title
+            firstColumnTitle
+            firstColumnImage {
+               file {
+                  url
+               }
+            }
+            phoneNumber
+            firstColumnTitle
+            secondColumnImage {
+               file {
+                  url
+               }
+            }
+            emailAdress
+         }
+      }
+   }
+`
 export default ContactPage
 export const Head = () => <title>Contact</title>

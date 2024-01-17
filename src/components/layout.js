@@ -3,8 +3,11 @@ import { Link } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
 import { useEffect } from 'react'
 import logo from '../images/Logo.svg'
+import Menu from '../components/menu'
+
 import AOS from 'aos'
-const Layout = ({ pageTitle, children }) => {
+const Layout = ({ data, pageTitle, children }) => {
+   console.log(data)
    useEffect(() => {
       AOS.init()
    }, []) // Runs once on component mount
@@ -46,44 +49,7 @@ const Layout = ({ pageTitle, children }) => {
                   className=" hidden w-full items-center  md:flex md:w-auto"
                   id="navbar-default"
                >
-                  <ul className="flex flex-row p-0 font-medium">
-                     <li>
-                        <Link
-                           to="/"
-                           className="mx-3 my-2 block text-themeWhite"
-                           activeClassName="!text-themeOrange border-b border-themeOrange"
-                        >
-                           Home
-                        </Link>
-                     </li>
-                     <li>
-                        <Link
-                           to="/about"
-                           className="mx-3 my-2 block text-themeWhite"
-                           activeClassName="!text-themeOrange border-b border-themeOrange"
-                        >
-                           About
-                        </Link>
-                     </li>
-                     <li>
-                        <Link
-                           to="/contact"
-                           className="mx-3 my-2 block text-themeWhite"
-                           activeClassName="!text-themeOrange border-b border-themeOrange"
-                        >
-                           Contact
-                        </Link>
-                     </li>
-                     <li>
-                        <Link
-                           to="/fotoAlbum"
-                           className="mx-3 my-2 block text-themeWhite"
-                           activeClassName="!text-themeOrange border-b border-themeOrange"
-                        >
-                           Foto album
-                        </Link>
-                     </li>
-                  </ul>
+                  <Menu />
                </div>
             </div>
          </nav>
@@ -128,4 +94,5 @@ const Layout = ({ pageTitle, children }) => {
       </div>
    )
 }
+
 export default Layout

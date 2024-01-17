@@ -3,6 +3,7 @@ import * as React from 'react'
 import Layout from '../components/layout'
 import { Link } from 'gatsby'
 import '../styles/global.css'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const FilterPage = ({ data }) => {
    console.log(data)
@@ -53,13 +54,18 @@ const FilterPage = ({ data }) => {
                            <Link
                               to={'/archive/' + blog.slug}
                               alt={blog.slug}
-                              className="absolute left-0 top-16"
+                              className="absolute top-16"
                            >
-                              <img
+                              <GatsbyImage
                                  className="border-4 border-themeOrange shadow-lg"
-                                 src={blog.imageFile.file.url}
+                                 image={getImage(blog.imageFile)}
                                  alt=""
                               />
+                              {/* <img
+                                 className="border-4 border-themeOrange shadow-lg"
+                                 src={getImage(blog.imageFile)}
+                                 alt=""
+                              /> */}
                            </Link>
                         </div>
                      </li>
@@ -81,9 +87,7 @@ export const pageQuery = graphql`
             }
             albumCategory
             imageFile {
-               file {
-                  url
-               }
+               gatsbyImageData
             }
          }
       }
