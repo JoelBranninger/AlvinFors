@@ -14,8 +14,8 @@ const FilterPage = ({ data }) => {
       data.allContentfulAlbumCategories.nodes[0].iconToTheCategory.file.url
    return (
       <Layout>
-         <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center overflow-hidden">
-            <section className="grid grid-cols-2 gap-4" data-aos="fade-left">
+         <div className="mx-auto flex max-w-screen-2xl flex-wrap content-center overflow-hidden  md:h-[90vh]">
+            <section className="grid gap-4 md:grid-cols-2" data-aos="fade-left">
                <div className=" flex flex-wrap content-center gap-5 pl-4 text-themeWhite">
                   <h2 className=" text-8xl">{capitalizedCategory}</h2>
                   <p className="text-xl">
@@ -25,19 +25,16 @@ const FilterPage = ({ data }) => {
                   </p>
                </div>
                <div
-                  className="flex h-[25vh] justify-center bg-themeDark pr-4 text-themeWhite"
+                  className="hidden  h-[25vh] justify-center bg-themeDark pr-4 text-themeWhite md:flex"
                   data-aos="fade-left "
                >
-                  <img src={icon} alt="camera" />
+                  <img className="" src={icon} alt="camera" />
                </div>
             </section>
          </div>
 
          <div className="container  mx-auto">
-            <ul
-               id="cards"
-               className="grid list-none grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
-            >
+            <ul id="cards" className="grid list-none grid-cols-1 gap-4 ">
                {data.allContentfulImage.nodes.map((blog, index) => {
                   const rotationDegree =
                      (index % 2 === 0 ? 1 : -1) *
@@ -88,6 +85,9 @@ export const pageQuery = graphql`
             albumCategory
             imageFile {
                gatsbyImageData
+               file {
+                  url
+               }
             }
          }
       }

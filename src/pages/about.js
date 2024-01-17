@@ -24,8 +24,8 @@ const AboutPage = ({ data }) => {
       data?.allContentfulAboutPage?.nodes[0]?.thirdSectionDescription?.raw || ''
    return (
       <Layout pageTitle="About Me">
-         <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center  overflow-hidden">
-            <section className="grid grid-cols-2 gap-4">
+         <div className="mx-auto  flex max-w-screen-2xl flex-wrap content-center  overflow-hidden pt-32 md:h-[90vh]">
+            <section className="grid grid-cols-1 gap-8 md:grid-cols-2">
                <div
                   className=" flex flex-wrap content-center gap-5 pl-4 text-themeWhite"
                   data-aos="fade-left"
@@ -40,7 +40,7 @@ const AboutPage = ({ data }) => {
                   </p>
                </div>
                <div
-                  className="flex justify-center bg-themeDark pr-4 text-themeWhite"
+                  className="flex justify-center bg-themeDark p-8 pr-4 text-themeWhite"
                   data-aos="fade-left"
                >
                   <div className="relative">
@@ -57,9 +57,9 @@ const AboutPage = ({ data }) => {
             </section>
          </div>
          <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center overflow-hidden">
-            <section className="grid grid-cols-2 gap-36">
+            <section className="grid gap-8  md:grid-cols-2">
                <div
-                  className="flex justify-center bg-themeDark pl-4 text-themeWhite"
+                  className="order-last flex justify-center bg-themeDark p-8 pl-4 text-themeWhite md:order-first"
                   data-aos="fade-right"
                >
                   <div className="relative">
@@ -74,7 +74,7 @@ const AboutPage = ({ data }) => {
                   </div>
                </div>
                <div
-                  className=" flex flex-wrap content-center gap-6 pr-4 text-themeWhite"
+                  className="flex flex-wrap content-center gap-6 p-8 pr-4 text-themeWhite"
                   data-aos="fade-right"
                >
                   <h2 className=" border-b-4 border-themeOrange text-6xl">
@@ -100,7 +100,7 @@ const AboutPage = ({ data }) => {
                   )}
                </p>
             </div>
-            <section className="grid w-full grid-cols-3 gap-8 p-4 pl-8 text-themeWhite">
+            <section className="grid w-full gap-8 p-4 pl-8 text-themeWhite lg:grid-cols-3">
                {data.allContentfulAlbumCategories.nodes.map((data) => (
                   <div className="relative">
                      <div className="absolute inset-0 left-[-1rem] top-4 z-10 h-full w-full">

@@ -22,8 +22,8 @@ const ContactPage = ({ data }) => {
       data?.allContentfulContactPage?.nodes[0]?.emailAdress || ''
    return (
       <Layout pageTitle="Contact">
-         <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center overflow-hidden">
-            <section className="grid grid-cols-2 gap-4">
+         <div className="mx-auto flex max-w-screen-2xl flex-wrap content-center overflow-hidden md:h-[90vh]">
+            <section className="grid gap-4 pt-16">
                <div
                   className=" flex flex-wrap content-center gap-5 pl-4 text-themeWhite"
                   data-aos="fade-left"
@@ -42,8 +42,8 @@ const ContactPage = ({ data }) => {
                className="mx-auto mt-[10vh] flex w-full max-w-screen-2xl flex-wrap content-center"
                data-aos="fade-up"
             >
-               <section className="grid w-full grid-cols-2  gap-4 p-4 text-themeWhite">
-                  <div className="mx-auto flex w-96  flex-col items-center gap-8 border-2 border-themeOrange bg-themeDarker p-6">
+               <section className="grid w-full gap-4  p-4 text-themeWhite md:grid-cols-2">
+                  <div className="mx-auto flex w-full  flex-col items-center gap-8 border-2 border-themeOrange bg-themeDarker p-6 md:w-80">
                      <img src={firstColumnImage} alt="" />
                      <h3 className="border-b-2 border-themeOrange text-3xl">
                         {firstColumnTitle}
@@ -51,7 +51,7 @@ const ContactPage = ({ data }) => {
 
                      <p className="text-xl">{phoneNumber}</p>
                   </div>
-                  <div className="mx-auto flex w-96  flex-col items-center gap-8 border-2 border-themeOrange bg-themeDarker p-6">
+                  <div className="mx-auto flex w-full flex-col  items-center gap-8 border-2 border-themeOrange bg-themeDarker p-6 md:w-80">
                      <img src={secondColumnImage} alt="" />
                      <h3 className="border-b-2 border-themeOrange text-3xl">
                         {secondColumnTitle}

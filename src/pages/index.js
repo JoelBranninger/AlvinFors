@@ -53,7 +53,7 @@ const IndexPage = ({ data }) => {
                </h2>
                <p>{secondSectionDescription}</p>
             </div>
-            <section className="grid w-full grid-cols-3 gap-4 p-4 text-themeWhite">
+            <section className="grid w-full grid-cols-1 gap-4 p-4 text-themeWhite md:grid-cols-3">
                {data.allContentfulAlbumCategories.nodes.map((data) => (
                   <div
                      key={data.categoryName}
