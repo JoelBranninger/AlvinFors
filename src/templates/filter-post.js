@@ -51,10 +51,12 @@ const FilterPage = ({ data }) => {
                            <Link
                               to={'/archive/' + blog.slug}
                               alt={blog.slug}
-                              className="absolute top-16"
+                              className="absolute"
+                              style={{ top: '15vh' }}
                            >
                               <GatsbyImage
-                                 className="border-4 border-themeOrange shadow-lg"
+                                 className="border-4 border-themeOrange  shadow-lg"
+                                 style={{ maxHeight: '70vh' }}
                                  image={getImage(blog.imageFile)}
                                  alt=""
                               />
