@@ -2,14 +2,16 @@ import { graphql } from 'gatsby'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import * as React from 'react'
 import Layout from '../components/layout'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+
 const AboutPage = ({ data }) => {
    const firstSectionTitle =
       data?.allContentfulAboutPage?.nodes[0]?.firstSectionTitle || ''
    const firstSectionDescription =
       data?.allContentfulAboutPage?.nodes[0]?.firstSectionDescription?.raw || ''
    const imageToFirstSecion =
-      data?.allContentfulAboutPage?.nodes[0]?.imageToFirstSecion?.file?.url ||
-      ''
+      data?.allContentfulAboutPage?.nodes[0]?.imageToFirstSecion
+         ?.gatsbyImageData || ''
    const secondSectionTitle =
       data?.allContentfulAboutPage?.nodes[0]?.secondSectionTitle || ''
    const secondSectionDescription =
@@ -24,8 +26,8 @@ const AboutPage = ({ data }) => {
       data?.allContentfulAboutPage?.nodes[0]?.thirdSectionDescription?.raw || ''
    return (
       <Layout pageTitle="About Me">
-         <div className="mx-auto  flex max-w-screen-2xl flex-wrap content-center  overflow-hidden pt-32 md:h-[90vh]">
-            <section className="grid grid-cols-1 gap-8 md:grid-cols-2">
+         <div className="mx-auto  flex max-w-screen-2xl flex-wrap content-center  overflow-hidden pt-32 lg:h-[90vh]">
+            <section className="grid grid-cols-1 gap-8 lg:grid-cols-2">
                <div
                   className=" flex flex-wrap content-center gap-5 pl-4 text-themeWhite"
                   data-aos="fade-left"
@@ -47,19 +49,25 @@ const AboutPage = ({ data }) => {
                      <div className="absolute inset-0 left-[-1rem] top-4 z-10 h-full w-full">
                         <div className="h-full w-full border-4 border-themeOrange" />
                      </div>
-                     <img
+                     {/* <img
                         className="relative z-20 h-full w-full object-cover object-center"
                         src={imageToFirstSecion}
                         alt="Beskrivande alt-text här"
+                     /> */}
+
+                     <GatsbyImage
+                        className="relative z-20 h-full w-full object-cover object-center"
+                        image={getImage(imageToFirstSecion)}
+                        alt=""
                      />
                   </div>
                </div>
             </section>
          </div>
          <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center overflow-hidden">
-            <section className="grid gap-8  md:grid-cols-2">
+            <section className="grid gap-8  lg:grid-cols-2">
                <div
-                  className="order-last flex justify-center bg-themeDark p-8 pl-4 text-themeWhite md:order-first"
+                  className="order-last flex justify-center bg-themeDark p-8 pl-4 text-themeWhite lg:order-first"
                   data-aos="fade-right"
                >
                   <div className="relative">
@@ -138,6 +146,7 @@ export const pageQuery = graphql`
             }
             firstSectionTitle
             imageToFirstSecion {
+               gatsbyImageData
                file {
                   url
                }

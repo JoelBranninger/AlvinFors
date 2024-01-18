@@ -3,7 +3,7 @@ import * as React from 'react'
 import Layout from '../components/layout'
 import { Link } from 'gatsby'
 import '../styles/global.css'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 const FilterPage = ({ data }) => {
    console.log(data)
@@ -19,9 +19,12 @@ const FilterPage = ({ data }) => {
                <div className=" flex flex-wrap content-center gap-5 pl-4 text-themeWhite">
                   <h2 className=" text-8xl">{capitalizedCategory}</h2>
                   <p className="text-xl">
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                     sed do eiusmod tempor incididunt ut labore et dolore magna
-                     aliqua.
+                     {documentToReactComponents(
+                        JSON.parse(
+                           data.allContentfulAlbumCategories[0]
+                              .descriptionOfCategory.raw
+                        )
+                     )}
                   </p>
                </div>
                <div
@@ -40,11 +43,15 @@ const FilterPage = ({ data }) => {
                      (index % 2 === 0 ? 1 : -1) *
                      (Math.floor(Math.random() * 5) + 1) // Växlar mellan positivt och negativt värde beroende på indexet
                   return (
-                     <li key={index} className="card sticky top-0 mx-auto">
+                     <li
+                        key={index}
+                        className="card sticky top-0 mx-auto"
+                        style={{ top: `10vh` }}
+                     >
                         <div
                            className="card-body relative mx-auto box-content flex h-[90vh] items-center justify-center  rounded-3xl transition-all duration-500 ease-in-out"
                            style={{
-                              top: `${index * 1.5}em`,
+                              // top: `10vh`,
                               transform: `rotate(${rotationDegree}deg)`,
                            }}
                         >
@@ -54,17 +61,12 @@ const FilterPage = ({ data }) => {
                               className="absolute"
                               style={{ top: '15vh' }}
                            >
-                              <GatsbyImage
-                                 className="border-4 border-themeOrange  shadow-lg"
-                                 style={{ maxHeight: '70vh' }}
-                                 image={getImage(blog.imageFile)}
+                              <img
+                                 className="border-4 border-themeOrange shadow-lg"
+                                 style={{ maxHeight: '70vh', maxWidth: '90%' }}
+                                 src={blog.imageFile.file.url}
                                  alt=""
                               />
-                              {/* <img
-                                 className="border-4 border-themeOrange shadow-lg"
-                                 src={getImage(blog.imageFile)}
-                                 alt=""
-                              /> */}
                            </Link>
                         </div>
                      </li>
@@ -86,7 +88,6 @@ export const pageQuery = graphql`
             }
             albumCategory
             imageFile {
-               gatsbyImageData
                file {
                   url
                }
@@ -100,6 +101,9 @@ export const pageQuery = graphql`
                file {
                   url
                }
+            }
+            descriptionOfCategory {
+               raw
             }
          }
       }
