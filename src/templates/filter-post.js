@@ -21,7 +21,7 @@ const FilterPage = ({ data }) => {
                   <p className="text-xl">
                      {documentToReactComponents(
                         JSON.parse(
-                           data.allContentfulAlbumCategories[0]
+                           data.allContentfulAlbumCategories.nodes[0]
                               .descriptionOfCategory.raw
                         )
                      )}
