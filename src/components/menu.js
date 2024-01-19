@@ -2,7 +2,7 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Link } from 'gatsby'
 
-const MyComponent = () => {
+const Menu = () => {
    // Define your GraphQL query
    const data = useStaticQuery(graphql`
       query {
@@ -14,6 +14,7 @@ const MyComponent = () => {
          }
       }
    `)
+   console.log(data)
    const menuLinks = data.allContentfulMenuLink.nodes
    const [navOverlayOpen, setNavOverlayOpen] = React.useState(false)
    const openNav = () => {
@@ -32,7 +33,6 @@ const MyComponent = () => {
             aria-expanded="false"
             onClick={openNav}
          >
-            <span className="sr-only">Open main menu</span>
             <svg
                className="h-5 w-5"
                aria-hidden="true"
@@ -109,4 +109,4 @@ const MyComponent = () => {
    )
 }
 
-export default MyComponent
+export default Menu

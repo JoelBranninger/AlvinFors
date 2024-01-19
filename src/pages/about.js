@@ -147,9 +147,6 @@ export const pageQuery = graphql`
             firstSectionTitle
             imageToFirstSecion {
                gatsbyImageData
-               file {
-                  url
-               }
             }
             imageToSecondSection {
                file {

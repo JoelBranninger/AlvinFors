@@ -2,7 +2,6 @@ import { graphql } from 'gatsby'
 import * as React from 'react'
 import Layout from '../components/layout'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import AOS from 'aos'
 import 'aos/dist/aos.css' // Importera CSS-filen för AOS-stilar
 const IndexPage = ({ data }) => {
    console.log(data)
@@ -24,13 +23,11 @@ const IndexPage = ({ data }) => {
          <div className="mx-auto flex h-[90vh] max-w-screen-2xl flex-wrap content-center overflow-hidden">
             <section className="grid grid-cols-2 gap-4">
                <div
-                  className="flex flex-wrap content-center gap-5 pl-4 text-themeWhite"
+                  className="flex flex-wrap content-center gap-5 pl-4 text-xl text-themeWhite"
                   data-aos="fade-left"
                >
                   <h2 className=" text-8xl">{heading}</h2>
-                  <p className="text-xl">
-                     {documentToReactComponents(JSON.parse(textToFirstHeading))}
-                  </p>
+                  {documentToReactComponents(JSON.parse(textToFirstHeading))}
                   <button className="w-fit border-2 border-themeOrange px-3 py-2 text-xl font-bold text-themeOrange">
                      Contact me
                   </button>
@@ -51,7 +48,7 @@ const IndexPage = ({ data }) => {
                <h2 className="mb-2 w-fit border-b-4 border-themeOrange pb-1 text-4xl font-bold">
                   {secondSectionTitle}
                </h2>
-               <p>{secondSectionDescription}</p>
+               {secondSectionDescription}
             </div>
             <section className="grid w-full grid-cols-1 gap-4 p-4 text-themeWhite md:grid-cols-3">
                {data.allContentfulAlbumCategories.nodes.map((data) => (
@@ -67,11 +64,9 @@ const IndexPage = ({ data }) => {
                      <h3 className="w-fit border-b-4 border-themeOrange text-2xl font-bold">
                         {data.categoryName}
                      </h3>
-                     <p>
-                        {documentToReactComponents(
-                           JSON.parse(data.descriptionOfCategory.raw)
-                        )}
-                     </p>
+                     {documentToReactComponents(
+                        JSON.parse(data.descriptionOfCategory.raw)
+                     )}
                   </div>
                ))}
             </section>

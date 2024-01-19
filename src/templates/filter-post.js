@@ -94,24 +94,9 @@ export const pageQuery = graphql`
             }
          }
       }
-
-      allContentfulAlbumCategories(filter: { slug: { eq: $albumCategory } }) {
-         nodes {
-            iconToTheCategory {
-               file {
-                  url
-               }
-            }
-            descriptionOfCategory {
-               raw
-            }
-         }
-      }
    }
 `
 export const Head = () => <title>Home Page</title>
-
-// Fråga stockholmaren om vrf inte tailwind funkar
 
 // import { graphql } from 'gatsby'
 // import * as React from 'react'
