@@ -94,6 +94,19 @@ export const pageQuery = graphql`
             }
          }
       }
+      allContentfulAlbumCategories(filter: { slug: { eq: $albumCategory } }) {
+         nodes {
+            categoryName
+            descriptionOfCategory {
+               raw
+            }
+            iconToTheCategory {
+               file {
+                  url
+               }
+            }
+         }
+      }
    }
 `
 export const Head = () => <title>Home Page</title>
